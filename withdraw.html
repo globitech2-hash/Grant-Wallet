@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Withdraw — Grant Wallet</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/withdraw.css">
+</head>
+<body data-page="withdraw">
+  <div class="app-shell">
+    <header class="topbar" id="topbar"></header>
+    <div class="app-body">
+      <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+      <nav class="sidebar" id="sidebar"></nav>
+
+      <main class="main-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-i18n="withdraw.title">Withdraw funds</h1>
+            <p class="page-subtitle" data-i18n="withdraw.subtitle">Transfer your available grant balance to a bank account.</p>
+          </div>
+        </div>
+
+        <div class="card balance-banner">
+          <div>
+            <div class="metric-label" data-i18n="withdraw.availableBalanceLabel">Available balance</div>
+            <div class="metric-value" id="availableBalance" data-no-translate="true">$0.00</div>
+          </div>
+          <a href="dashboard.html" class="btn btn-secondary btn-sm" data-i18n="withdraw.backToDashboard">Back to dashboard</a>
+        </div>
+
+        <div class="withdraw-layout">
+          <div class="card">
+            <h2 class="section-title" data-i18n="withdraw.formTitle">Bank details</h2>
+            <form id="withdrawForm" novalidate>
+              <div class="field">
+                <label for="fullName" data-i18n="withdraw.name">Account holder name</label>
+                <input type="text" id="fullName" required>
+              </div>
+              <div class="field">
+                <label for="bankName" data-i18n="withdraw.bank">Bank name</label>
+                <input type="text" id="bankName" required>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="accountNumber" data-i18n="withdraw.account">Account / IBAN</label>
+                  <input type="text" id="accountNumber" required>
+                </div>
+                <div class="field">
+                  <label for="routingCode" data-i18n="withdraw.routing">Routing / SWIFT (optional)</label>
+                  <input type="text" id="routingCode">
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="country" data-i18n="withdraw.country">Country</label>
+                  <input type="text" id="country" required>
+                </div>
+                <div class="field">
+                  <label for="amount" data-i18n="withdraw.amount">Amount</label>
+                  <input type="number" id="amount" min="0" step="0.01" required>
+                </div>
+              </div>
+              <button type="submit" id="withdrawSubmit" class="btn btn-primary btn-block" data-i18n="withdraw.submit">Request withdrawal</button>
+            </form>
+          </div>
+
+          <div class="card">
+            <h2 class="section-title" data-i18n="withdraw.recentAttempts">Recent activity</h2>
+            <div id="recentAttempts" class="recent-attempts-list"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div id="conversionModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="conversionModalTitle" hidden>
+    <div class="modal-backdrop" id="conversionModalBackdrop"></div>
+    <div class="modal-panel">
+      <h2 class="modal-title" id="conversionModalTitle" data-i18n="withdraw.conversionTitle">Conversion required</h2>
+      <p class="modal-copy" data-i18n="withdraw.conversionMessage">Your funds must be converted before withdrawal. Please check back later.</p>
+      <p class="modal-copy" data-i18n="withdraw.savedMessage">Your bank details have been saved in the database and are awaiting conversion.</p>
+      <button type="button" id="conversionModalClose" class="btn btn-primary" data-i18n="withdraw.modalClose">Close</button>
+    </div>
+  </div>
+
+  <div id="toast-root" class="toast-root"></div>
+
+  <script src="js/translations.js"></script>
+  <script src="js/translator.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/withdraw.js"></script>
+</body>
+</html>
